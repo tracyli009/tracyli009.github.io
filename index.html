@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Tracy Li 李泉 — 湾区华人家庭的退休规划与资产配置顾问 | Retirement planning and asset allocation for Bay Area Chinese families.">
+<title>Tracy Li 退休规划</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one calm column of editorial bands; hero pairs the thesis with a glide-path chart; calculator is the working centerpiece */
+:root{
+  --paper:#f5f7f6; --surface:#ffffff; --ink:#16232b; --muted:#56656c; --line:#d6dedc;
+  --jade:#2f7a68; --jade-soft:#e2efeb; --bond:#7c94a6; --cash:#c9b98f;
+  --display:"Newsreader","Noto Serif SC",Georgia,"Songti SC",serif;
+  --display-zh:"Noto Serif SC","Songti SC",serif;
+  --body:"IBM Plex Sans","Noto Sans SC",system-ui,"PingFang SC",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f171b; --surface:#152127; --ink:#e6ecea; --muted:#9aaab0; --line:#26353b;
+  --jade:#5fb59d; --jade-soft:#18302b; --bond:#6c8597; --cash:#a8996f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f171b; --surface:#152127; --ink:#e6ecea; --muted:#9aaab0; --line:#26353b;
+  --jade:#5fb59d; --jade-soft:#18302b; --bond:#6c8597; --cash:#a8996f; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.65 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--jade)}
+:focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:4px}
+
+/* language toggle */
+html[lang="zh"] [lang="en"]:not(html){display:none}
+html[lang="en"] [lang="zh"]:not(html){display:none}
+html[lang="zh"] h1, html[lang="zh"] h2{font-family:var(--display-zh);font-weight:700;letter-spacing:.02em}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
+.brand b{font-family:var(--display);font-size:1.35rem;font-weight:600}
+.brand span{font-size:.8rem;color:var(--muted);letter-spacing:.08em}
+nav{display:flex;gap:22px;align-items:center;font-size:.92rem}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:none;color:var(--muted);font:500 .8rem var(--body);padding:5px 11px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+@media (max-width:720px){nav a{display:none}}
+
+section{padding-block:72px;border-bottom:1px solid var(--line)}
+.eyebrow{font:500 .75rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--jade);margin:0 0 14px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.12}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.2}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:62ch}
+.lede{font-size:1.12rem;color:var(--muted);margin-top:20px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-block:64px 72px}
+.hero > *{min-width:0}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:6px;font:500 .95rem var(--body);text-decoration:none;cursor:pointer;border:1px solid var(--ink)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.ghost{background:none;color:var(--ink)}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 22px 16px}
+.chart h3{font-size:.95rem}
+.chart .sub{font-size:.82rem;color:var(--muted);margin-top:2px}
+.chart svg{display:block;width:100%;height:auto;margin-top:14px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+@media (max-width:860px){.hero{grid-template-columns:1fr;gap:40px}}
+
+/* services */
+.head{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.svc{padding:26px 24px 28px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0}
+.svc:not(:nth-child(3n)){border-right:1px solid var(--line)}
+.svc:not(:nth-child(3n+1)){padding-left:24px}
+.svc .tag{font:.72rem var(--mono);color:var(--jade);letter-spacing:.06em}
+.svc p{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){
+  .services{grid-template-columns:1fr}
+  .svc{border-right:0!important;padding-left:0!important;padding-right:0}
+}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
+.step{display:flex;flex-direction:column;gap:8px;min-width:0}
+.step .n{font:500 .8rem var(--mono);color:var(--jade);border-top:2px solid var(--jade);padding-top:10px}
+.step p{color:var(--muted);font-size:.93rem}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.calc > *{min-width:0}
+.inputs{padding:28px;display:grid;gap:18px;border-right:1px solid var(--line)}
+.field{display:grid;gap:6px}
+.field label{display:flex;justify-content:space-between;gap:10px;font-size:.88rem;font-weight:500}
+.field output{font:500 .9rem var(--mono);color:var(--jade);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--jade)}
+.results{padding:28px;background:var(--jade-soft);display:flex;flex-direction:column;gap:22px}
+.big{font:500 clamp(2rem,4vw,2.8rem)/1 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.kv{display:grid;grid-template-columns:1fr auto;gap:10px 16px;font-size:.92rem;border-top:1px solid var(--line);padding-top:16px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font:500 .95rem var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.note{font-size:.78rem;color:var(--muted)}
+@media (max-width:760px){.calc{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* about */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.about > *{min-width:0}
+.seal{aspect-ratio:1;max-width:260px;width:100%;border-radius:10px;background:var(--ink);color:var(--paper);display:grid;place-items:center;text-align:center}
+.seal b{display:block;font:700 4.2rem/1 var(--display-zh)}
+.seal span{display:block;font:.78rem var(--mono);letter-spacing:.16em;margin-top:14px;opacity:.75}
+.about .body{display:grid;gap:16px;color:var(--muted)}
+.about .body strong{color:var(--ink)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.facts span{font-size:.8rem;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--ink)}
+@media (max-width:760px){.about{grid-template-columns:1fr;gap:32px}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+.contact > *{min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:grid;gap:18px}
+.row{display:grid;gap:4px}
+.row small{font:.72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.copy{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.copy code{font:500 1.1rem var(--mono);user-select:all;word-break:break-all}
+.copy button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;padding:6px 12px;font:500 .82rem var(--body);cursor:pointer}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+
+footer{padding-block:36px 48px;font-size:.78rem;color:var(--muted);display:grid;gap:10px}
+footer p{max-width:90ch}
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top"><b>Tracy Li</b><span lang="zh">退休规划 · 资产配置</span><span lang="en">Retirement · Allocation</span></a>
+    <nav>
+      <a href="#services"><span lang="zh">服务</span><span lang="en">Services</span></a>
+      <a href="#calculator"><span lang="zh">退休测算</span><span lang="en">Calculator</span></a>
+      <a href="#about"><span lang="zh">关于</span><span lang="en">About</span></a>
+      <a href="#contact"><span lang="zh">预约</span><span lang="en">Contact</span></a>
+      <div class="lang" role="group" aria-label="Language">
+        <button id="btn-zh" type="button" aria-pressed="true">中文</button>
+        <button id="btn-en" type="button" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <div>
+      <p class="eyebrow"><span lang="zh">湾区华人家庭 · Milpitas</span><span lang="en">For Bay Area Chinese families · Milpitas</span></p>
+      <h1>
+        <span lang="zh">退休不是一个数字，<br>是一份现金流计划。</span>
+        <span lang="en">Retirement isn't a number. It's a cash-flow plan.</span>
+      </h1>
+      <p class="lede">
+        <span lang="zh">我帮您把 401(k)、IRA、房产和储蓄放进同一张资产配置表：多少放股票、多少放债券、何时领社安金、先动用哪个账户。用数据说话，用中文讲清楚。</span>
+        <span lang="en">I put your 401(k), IRA, real estate and savings on one allocation map: how much in stocks and bonds, when to claim Social Security, and which account to draw from first. Data-driven, explained in Mandarin or English.</span>
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#contact"><span lang="zh">预约免费咨询</span><span lang="en">Book a free consultation</span></a>
+        <a class="btn ghost" href="#calculator"><span lang="zh">先算一算 →</span><span lang="en">Run the numbers →</span></a>
+      </div>
+    </div>
+
+    <figure class="chart" style="margin:0">
+      <h3><span lang="zh">随年龄调整的资产配置（示例）</span><span lang="en">Allocation glide path by age (illustrative)</span></h3>
+      <p class="sub"><span lang="zh">越接近退休，越重视稳定现金流</span><span lang="en">Closer to retirement, stability matters more</span></p>
+      <svg id="glide" viewBox="0 0 440 250" role="img" aria-label="Stacked bars showing stock, bond and cash percentages from age 40 to 75"></svg>
+      <div class="legend">
+        <span><i style="background:var(--jade)"></i><span lang="zh">股票</span><span lang="en">Stocks</span></span>
+        <span><i style="background:var(--bond)"></i><span lang="zh">债券</span><span lang="en">Bonds</span></span>
+        <span><i style="background:var(--cash)"></i><span lang="zh">现金</span><span lang="en">Cash</span></span>
+      </div>
+    </figure>
+  </section>
+
+  <section id="services">
+    <div class="head">
+      <p class="eyebrow"><span lang="zh">服务内容</span><span lang="en">Services</span></p>
+      <h2><span lang="zh">从积累期到领取期，一套完整的规划</span><span lang="en">One plan from accumulation through drawdown</span></h2>
+    </div>
+    <div class="services">
+      <div class="svc"><span class="tag">401(k) · IRA · Roth</span>
+        <h3><span lang="zh">退休收入规划</span><span lang="en">Retirement income planning</span></h3>
+        <p><span lang="zh">估算退休后每月需要多少，再倒推现在该存多少、该投什么。</span><span lang="en">Estimate the monthly income you need, then work back to what to save and invest today.</span></p></div>
+      <div class="svc"><span class="tag">Stocks · Bonds · Cash</span>
+        <h3><span lang="zh">资产配置与再平衡</span><span lang="en">Asset allocation &amp; rebalancing</span></h3>
+        <p><span lang="zh">根据年龄、风险承受度和时间线设定比例，并定期再平衡。</span><span lang="en">Set your mix by age, risk tolerance and timeline, and rebalance on a schedule.</span></p></div>
+      <div class="svc"><span class="tag">Social Security · 62–70</span>
+        <h3><span lang="zh">社安金领取时机</span><span lang="en">Social Security timing</span></h3>
+        <p><span lang="zh">比较 62 岁、全额退休年龄与 70 岁领取的终身差额，含配偶策略。</span><span lang="en">Compare lifetime benefits at 62, full retirement age and 70, including spousal strategy.</span></p></div>
+      <div class="svc"><span class="tag">Roth conversion · RMD</span>
+        <h3><span lang="zh">税务优化的提取顺序</span><span lang="en">Tax-aware withdrawal order</span></h3>
+        <p><span lang="zh">规划应税、递延税和免税账户的提取顺序，提前布局 RMD。</span><span lang="en">Sequence taxable, tax-deferred and tax-free accounts, and prepare ahead of RMDs.</span></p></div>
+      <div class="svc"><span class="tag">Annuity · Life insurance</span>
+        <h3><span lang="zh">长寿与风险保障</span><span lang="en">Longevity &amp; risk protection</span></h3>
+        <p><span lang="zh">评估年金与寿险是否适合您，为“活得比钱长”做准备。</span><span lang="en">Assess whether annuities or life insurance fit, so your money lasts as long as you do.</span></p></div>
+      <div class="svc"><span class="tag">Cross-border · Trust</span>
+        <h3><span lang="zh">华人家庭专题</span><span lang="en">Topics for Chinese families</span></h3>
+        <p><span lang="zh">父母来美、跨境资产、信托与传承，结合家庭实际情况讨论。</span><span lang="en">Parents in the US, cross-border assets, trusts and legacy, discussed in your family's context.</span></p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <p class="eyebrow"><span lang="zh">合作流程</span><span lang="en">How we work</span></p>
+      <h2><span lang="zh">四步走，每一步都有书面结果</span><span lang="en">Four steps, each with a written result</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><h3><span lang="zh">了解现状</span><span lang="en">Discovery</span></h3><p><span lang="zh">梳理收入、支出、账户和目标，约 60 分钟。</span><span lang="en">Map income, spending, accounts and goals. About 60 minutes.</span></p></div>
+      <div class="step"><span class="n">02</span><h3><span lang="zh">数据分析</span><span lang="en">Analysis</span></h3><p><span lang="zh">用 AI 工具做多情景测算，再由我逐项审核。</span><span lang="en">Run multi-scenario projections with AI tools, each reviewed by me.</span></p></div>
+      <div class="step"><span class="n">03</span><h3><span lang="zh">方案讲解</span><span lang="en">Plan review</span></h3><p><span lang="zh">中英双语讲解配置建议和行动清单。</span><span lang="en">Walk through the allocation and an action checklist, in either language.</span></p></div>
+      <div class="step"><span class="n">04</span><h3><span lang="zh">年度复盘</span><span lang="en">Annual check-in</span></h3><p><span lang="zh">市场、税法或家庭变化时重新调整。</span><span lang="en">Adjust when markets, tax law or your family situation change.</span></p></div>
+    </div>
+  </section>
+
+  <section id="calculator">
+    <div class="head">
+      <p class="eyebrow"><span lang="zh">退休测算</span><span lang="en">Retirement calculator</span></p>
+      <h2><span lang="zh">按现在的节奏，退休时大概有多少？</span><span lang="en">At your current pace, what will you have?</span></h2>
+    </div>
+    <div class="calc">
+      <form class="inputs" id="calc-form" onsubmit="return false">
+        <div class="field"><label for="age"><span><span lang="zh">现在年龄</span><span lang="en">Current age</span></span><output id="age-o"></output></label><input id="age" type="range" min="25" max="64" value="42"></div>
+        <div class="field"><label for="ret"><span><span lang="zh">计划退休年龄</span><span lang="en">Retirement age</span></span><output id="ret-o"></output></label><input id="ret" type="range" min="50" max="72" value="65"></div>
+        <div class="field"><label for="bal"><span><span lang="zh">目前退休储蓄</span><span lang="en">Current savings</span></span><output id="bal-o"></output></label><input id="bal" type="range" min="0" max="2000000" step="10000" value="350000"></div>
+        <div class="field"><label for="mon"><span><span lang="zh">每月新增储蓄</span><span lang="en">Monthly contribution</span></span><output id="mon-o"></output></label><input id="mon" type="range" min="0" max="8000" step="100" value="2000"></div>
+        <div class="field"><label for="rate"><span><span lang="zh">年化回报假设</span><span lang="en">Assumed annual return</span></span><output id="rate-o"></output></label><input id="rate" type="range" min="2" max="9" step="0.5" value="6"></div>
+      </form>
+      <div class="results" aria-live="polite">
+        <div>
+          <p class="eyebrow" style="margin-bottom:8px"><span lang="zh">退休时预计资产（今日购买力）</span><span lang="en">Projected at retirement (today's dollars)</span></p>
+          <div class="big" id="out-bal">—</div>
+        </div>
+        <dl class="kv">
+          <dt><span lang="zh">按 4% 提取，每年可用</span><span lang="en">Annual income at 4% withdrawal</span></dt><dd id="out-yr">—</dd>
+          <dt><span lang="zh">折合每月</span><span lang="en">Per month</span></dt><dd id="out-mo">—</dd>
+          <dt><span lang="zh">距离退休</span><span lang="en">Years to retirement</span></dt><dd id="out-n">—</dd>
+        </dl>
+        <p class="note"><span lang="zh">仅为示例测算：已扣除 3% 通胀，未计入社安金、税费和费用，不构成投资建议。真实方案需结合您的完整情况。</span><span lang="en">Illustration only: assumes 3% inflation, excludes Social Security, taxes and fees. Not investment advice; a real plan uses your full picture.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about">
+      <div class="seal" aria-hidden="true"><div><b>李泉</b><span>TRACY LI</span></div></div>
+      <div class="body">
+        <p class="eyebrow"><span lang="zh">关于我</span><span lang="en">About</span></p>
+        <h2 style="color:var(--ink)"><span lang="zh">数据做分析，判断由人来负责</span><span lang="en">Data does the analysis. A person owns the judgment.</span></h2>
+        <p><span lang="zh">我是 <strong>Tracy Li（李泉）</strong>，在湾区服务北美华人家庭的理财顾问。我用 AI 工具做多情景测算和资料整理，让每次讨论都有扎实的数字基础；但每一项建议，都由我根据您的家庭情况亲自判断。</span><span lang="en">I'm <strong>Tracy Li (李泉)</strong>, a financial professional serving Chinese families in North America. I use AI tools for scenario modeling and research so every conversation rests on solid numbers, and I make every recommendation myself based on your family's situation.</span></p>
+        <p><span lang="zh">入行前我从事反欺诈工作，这让我对风险、细节和“看起来太好”的产品格外谨慎。</span><span lang="en">Before advising, I worked in fraud prevention. That made me careful about risk, details, and anything that looks too good to be true.</span></p>
+        <div class="facts"><span>中文 / English</span><span>Milpitas office</span><span lang="zh">苏州中学校友</span><span lang="en">Suzhou High School alum</span><span lang="zh">反欺诈背景</span><span lang="en">Fraud-prevention background</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-bottom:0">
+    <div class="contact">
+      <div class="head" style="margin:0">
+        <p class="eyebrow"><span lang="zh">预约咨询</span><span lang="en">Get in touch</span></p>
+        <h2><span lang="zh">第一次咨询免费，30–60 分钟</span><span lang="en">Your first consultation is free, 30–60 minutes</span></h2>
+        <p class="lede"><span lang="zh">加微信时请备注“退休规划”，并简单说明您最关心的问题。可以线上，也可以来 Milpitas 办公室面谈。</span><span lang="en">When adding me on WeChat, mention "retirement planning" and your main question. We can meet online or at my Milpitas office.</span></p>
+      </div>
+      <div class="card">
+        <div class="row"><small>WeChat</small>
+          <div class="copy"><code id="wx">TracyBayArea2023</code><button id="copy-btn" type="button"><span lang="zh">复制</span><span lang="en">Copy</span></button></div></div>
+        <div class="row"><small><span lang="zh">办公室</span><span lang="en">Office</span></small><span>Milpitas, CA</span></div>
+        <div class="row"><small><span lang="zh">语言</span><span lang="en">Languages</span></small><span>普通话 · English</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p><span lang="zh">本网站内容仅供教育参考，不构成投资、税务或法律建议。投资有风险，过往表现不代表未来回报。</span><span lang="en">Content on this site is for educational purposes only and is not investment, tax or legal advice. Investing involves risk; past performance does not guarantee future results.</span></p>
+  <p>[Add your firm's required licensing and broker-dealer disclosures here before publishing publicly.]</p>
+  <p>© 2026 Tracy Li</p>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function setLang(l){root.setAttribute('lang',l);
+    document.getElementById('btn-zh').setAttribute('aria-pressed',l==='zh');
+    document.getElementById('btn-en').setAttribute('aria-pressed',l==='en');
+    try{localStorage.setItem('lang',l)}catch(e){}}
+  var saved='zh';try{saved=localStorage.getItem('lang')||'zh'}catch(e){}
+  setLang(saved);
+  document.getElementById('btn-zh').onclick=function(){setLang('zh')};
+  document.getElementById('btn-en').onclick=function(){setLang('en')};
+
+  // glide path chart
+  var ages=[40,45,50,55,60,65,70,75], svg=document.getElementById('glide'), NS='http://www.w3.org/2000/svg';
+  var L=34,T=8,W=440-L-6,H=210, bw=W/ages.length;
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e}
+  [0,25,50,75,100].forEach(function(v){var y=T+H-(v/100)*H;
+    el('line',{x1:L,x2:L+W,y1:y,y2:y,stroke:'var(--line)','stroke-width':1});
+    var t=el('text',{x:L-6,y:y+4,'text-anchor':'end','font-size':10,fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});t.textContent=v+'%'});
+  ages.forEach(function(a,i){
+    var stock=Math.round(Math.max(40,Math.min(85,85-(a-40)*1.3))), cash=a>=60?10:5, bond=100-stock-cash;
+    var x=L+i*bw+bw*.18, w=bw*.64, y=T+H;
+    [[stock,'var(--jade)'],[bond,'var(--bond)'],[cash,'var(--cash)']].forEach(function(p){
+      var h=p[0]/100*H; y-=h; el('rect',{x:x,y:y,width:w,height:h,fill:p[1]})});
+    var s=el('text',{x:x+w/2,y:T+H-(stock/100*H)/2+4,'text-anchor':'middle','font-size':10,fill:'var(--surface)','font-family':'IBM Plex Mono,monospace'});s.textContent=stock;
+    var t=el('text',{x:x+w/2,y:T+H+18,'text-anchor':'middle','font-size':11,fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});t.textContent=a;
+  });
+  var at=el('text',{x:L+W,y:T+H+36,'text-anchor':'end','font-size':10,fill:'var(--muted)','font-family':'IBM Plex Sans,sans-serif'});at.textContent='Age 年龄';
+
+  // calculator
+  var $=function(id){return document.getElementById(id)};
+  var usd=function(v){return '$'+Math.round(v).toLocaleString('en-US')};
+  function calc(){
+    var age=+$('age').value, ret=Math.max(+$('ret').value,age+1);
+    if(+$('ret').value<=age){$('ret').value=ret}
+    var bal=+$('bal').value, mon=+$('mon').value, r=+$('rate').value/100;
+    var real=(1+r)/1.03-1, n=ret-age, m=Math.pow(1+real,1/12)-1, months=n*12;
+    var fv=bal*Math.pow(1+m,months)+(m?mon*(Math.pow(1+m,months)-1)/m:mon*months);
+    $('age-o').textContent=age; $('ret-o').textContent=ret; $('bal-o').textContent=usd(bal);
+    $('mon-o').textContent=usd(mon); $('rate-o').textContent=(+$('rate').value).toFixed(1)+'%';
+    $('out-bal').textContent=usd(fv); $('out-yr').textContent=usd(fv*.04); $('out-mo').textContent=usd(fv*.04/12);
+    $('out-n').textContent=n+(root.lang==='zh'?' 年':' yrs');
+  }
+  ['age','ret','bal','mon','rate'].forEach(function(id){$(id).addEventListener('input',calc)});
+  ['btn-zh','btn-en'].forEach(function(id){$(id).addEventListener('click',calc)});
+  calc();
+
+  // copy wechat
+  $('copy-btn').addEventListener('click',function(){
+    var b=this, txt='TracyBayArea2023';
+    function done(){var o=b.innerHTML;b.textContent=root.lang==='zh'?'已复制':'Copied';setTimeout(function(){b.innerHTML=o},1600)}
+    function fallback(){var r=document.createRange();r.selectNodeContents($('wx'));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+    try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+  });
+})();
+</script>
+</body>
+</html>
