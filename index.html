@@ -1,351 +1,365 @@
-<!doctype html>
-<html lang="zh">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Tracy Li 李泉 — 湾区华人家庭的退休规划与资产配置顾问 | Retirement planning and asset allocation for Bay Area Chinese families.">
-<title>Tracy Li 退休规划</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新移民家庭财务体检表 · Family Financial Check-up</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-/* Layout: one calm column of editorial bands; hero pairs the thesis with a glide-path chart; calculator is the working centerpiece */
 :root{
-  --paper:#f5f7f6; --surface:#ffffff; --ink:#16232b; --muted:#56656c; --line:#d6dedc;
-  --jade:#2f7a68; --jade-soft:#e2efeb; --bond:#7c94a6; --cash:#c9b98f;
-  --display:"Newsreader","Noto Serif SC",Georgia,"Songti SC",serif;
-  --display-zh:"Noto Serif SC","Songti SC",serif;
-  --body:"IBM Plex Sans","Noto Sans SC",system-ui,"PingFang SC",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --navy:#0d1b2a; --navy2:#13263b; --ink:#1b2430; --muted:#5d6b7a; --line:#e3ddd0;
+  --paper:#faf7f1; --card:#ffffff; --gold:#b8893b; --gold2:#d9b36a;
+  --green:#2f7d5b; --amber:#c98a1b; --red:#b8423a; --blue:#2c5d8a;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0f171b; --surface:#152127; --ink:#e6ecea; --muted:#9aaab0; --line:#26353b;
-  --jade:#5fb59d; --jade-soft:#18302b; --bond:#6c8597; --cash:#a8996f; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0f171b; --surface:#152127; --ink:#e6ecea; --muted:#9aaab0; --line:#26353b;
-  --jade:#5fb59d; --jade-soft:#18302b; --bond:#6c8597; --cash:#a8996f; color-scheme:dark}
-
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font:16px/1.65 var(--body);
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
-.wrap{max-width:1080px;margin:0 auto}
-a{color:var(--jade)}
-:focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:4px}
-
-/* language toggle */
-html[lang="zh"] [lang="en"]:not(html){display:none}
-html[lang="en"] [lang="zh"]:not(html){display:none}
-html[lang="zh"] h1, html[lang="zh"] h2{font-family:var(--display-zh);font-weight:700;letter-spacing:.02em}
-
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
-.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
-.brand b{font-family:var(--display);font-size:1.35rem;font-weight:600}
-.brand span{font-size:.8rem;color:var(--muted);letter-spacing:.08em}
-nav{display:flex;gap:22px;align-items:center;font-size:.92rem}
-nav a{color:var(--muted);text-decoration:none}
-nav a:hover{color:var(--ink)}
-.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.lang button{border:0;background:none;color:var(--muted);font:500 .8rem var(--body);padding:5px 11px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-@media (max-width:720px){nav a{display:none}}
-
-section{padding-block:72px;border-bottom:1px solid var(--line)}
-.eyebrow{font:500 .75rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--jade);margin:0 0 14px}
-h1,h2,h3{text-wrap:balance;margin:0}
-h1{font-family:var(--display);font-weight:500;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.12}
-h2{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.2}
-h3{font-size:1.05rem;font-weight:600}
-p{margin:0;max-width:62ch}
-.lede{font-size:1.12rem;color:var(--muted);margin-top:20px}
-
-/* hero */
-.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-block:64px 72px}
-.hero > *{min-width:0}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:6px;font:500 .95rem var(--body);text-decoration:none;cursor:pointer;border:1px solid var(--ink)}
-.btn.primary{background:var(--ink);color:var(--paper)}
-.btn.ghost{background:none;color:var(--ink)}
-.chart{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 22px 16px}
-.chart h3{font-size:.95rem}
-.chart .sub{font-size:.82rem;color:var(--muted);margin-top:2px}
-.chart svg{display:block;width:100%;height:auto;margin-top:14px}
-.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.8rem;color:var(--muted);margin-top:10px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
-@media (max-width:860px){.hero{grid-template-columns:1fr;gap:40px}}
-
-/* services */
-.head{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
-.svc{padding:26px 24px 28px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0}
-.svc:not(:nth-child(3n)){border-right:1px solid var(--line)}
-.svc:not(:nth-child(3n+1)){padding-left:24px}
-.svc .tag{font:.72rem var(--mono);color:var(--jade);letter-spacing:.06em}
-.svc p{color:var(--muted);font-size:.95rem}
-@media (max-width:860px){
-  .services{grid-template-columns:1fr}
-  .svc{border-right:0!important;padding-left:0!important;padding-right:0}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter","Noto Sans SC",system-ui,sans-serif;font-size:15px;line-height:1.6}
+.serif{font-family:"Noto Serif SC",serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.hero{background:radial-gradient(1200px 400px at 80% -10%,#1f3a57 0%,transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#f3ede1;padding:48px 0 40px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:340px;height:340px;border:1px solid rgba(217,179,106,.25);border-radius:50%}
+.hero:before{content:"";position:absolute;right:-20px;top:-20px;width:220px;height:220px;border:1px solid rgba(217,179,106,.18);border-radius:50%}
+.eyebrow{letter-spacing:.28em;font-size:11px;color:var(--gold2);text-transform:uppercase;font-weight:600}
+.hero h1{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(28px,5vw,44px);margin:10px 0 6px;letter-spacing:.04em}
+.hero .en{font-size:15px;color:#c9c2b4;letter-spacing:.06em}
+.hero p.lead{max-width:640px;color:#d8d1c3;margin:18px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.meta label{font-size:12px;color:#a9a294;display:block;margin-bottom:4px}
+.meta input{background:rgba(255,255,255,.06);border:1px solid rgba(217,179,106,.35);color:#fff;border-radius:8px;padding:9px 12px;font:inherit;min-width:180px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+button{font:inherit;cursor:pointer;border-radius:999px;padding:9px 18px;border:1px solid var(--gold);background:transparent;color:var(--gold2);font-weight:600;font-size:14px}
+button.primary{background:linear-gradient(135deg,var(--gold2),var(--gold));color:var(--navy);border:none}
+button:hover{filter:brightness(1.08)}
+.methodology{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:-22px auto 0;position:relative;z-index:2}
+.methodology div{background:var(--card);padding:16px 18px}
+.methodology b{display:block;font-family:"Noto Serif SC",serif;font-size:22px;color:var(--navy)}
+.methodology span{font-size:12.5px;color:var(--muted)}
+section.block{margin:34px 0}
+.sec-h{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--navy);padding-bottom:8px;margin-bottom:16px}
+.sec-h .num{font-family:"Noto Serif SC",serif;font-size:30px;font-weight:900;color:var(--gold)}
+.sec-h h2{font-family:"Noto Serif SC",serif;margin:0;font-size:21px}
+.sec-h .en{color:var(--muted);font-size:13px;letter-spacing:.05em}
+.sec-h .w{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.inputs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.field{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.field label{font-size:13px;font-weight:600;display:block}
+.field small{color:var(--muted);font-size:11.5px;display:block;margin-bottom:6px}
+.field .in{display:flex;align-items:center;border-bottom:1px solid var(--line)}
+.field .in span{color:var(--muted);font-size:13px}
+.field input{border:none;outline:none;font:inherit;font-weight:600;font-size:17px;width:100%;padding:4px 4px;background:transparent;color:var(--navy)}
+.item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:8px}
+.item.crit{border-left:4px solid var(--red)}
+.item .q{font-weight:500}
+.item .q .tag{display:inline-block;font-size:10.5px;color:var(--red);border:1px solid var(--red);border-radius:4px;padding:0 5px;margin-left:6px;vertical-align:2px;font-weight:600;letter-spacing:.05em}
+.item .q .tag.auto{color:var(--blue);border-color:var(--blue)}
+.item .note{font-size:12.5px;color:var(--muted);margin-top:3px}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex-shrink:0}
+.seg button{border:none;border-radius:0;padding:6px 12px;color:var(--muted);font-weight:500;font-size:13px;background:#fff}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button.on[data-v="2"]{background:var(--green);color:#fff}
+.seg button.on[data-v="1"]{background:var(--amber);color:#fff}
+.seg button.on[data-v="0"]{background:var(--red);color:#fff}
+.seg button.on[data-v="na"]{background:#8a8f96;color:#fff}
+.autoval{font-weight:700;font-size:14px;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.autoval.g{background:#e5f2ec;color:var(--green)} .autoval.a{background:#fbf0dc;color:var(--amber)} .autoval.r{background:#f7e3e1;color:var(--red)} .autoval.n{background:#eee;color:#888}
+/* report */
+#report{background:var(--navy);color:#f1ead9;border-radius:20px;padding:30px;margin:40px 0}
+#report h2{font-family:"Noto Serif SC",serif;margin:0 0 4px;font-size:24px}
+.rgrid{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:center;margin-top:18px}
+.dial{text-align:center}
+.dial .score{font-family:"Noto Serif SC",serif;font-size:64px;font-weight:900;line-height:1;color:var(--gold2)}
+.dial .grade{display:inline-block;margin-top:8px;padding:4px 14px;border-radius:999px;font-weight:700;font-size:14px}
+.dial .desc{font-size:13px;color:#bfb8aa;margin-top:8px}
+.radarbox{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.bars .row{display:grid;grid-template-columns:110px 1fr 36px;gap:10px;align-items:center;font-size:13px;margin:7px 0}
+.bars .track{height:8px;background:rgba(255,255,255,.08);border-radius:9px;overflow:hidden}
+.bars .fill{height:100%;border-radius:9px}
+.bars .v{text-align:right;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:24px}
+.kpi{background:rgba(255,255,255,.05);border:1px solid rgba(217,179,106,.2);border-radius:12px;padding:12px}
+.kpi .l{font-size:11.5px;color:#a9a294}
+.kpi .n{font-size:22px;font-weight:800;font-family:"Inter";margin-top:2px}
+.kpi .t{font-size:11px;color:#8f897c}
+.actions{margin-top:26px}
+.actions h3{font-family:"Noto Serif SC",serif;font-size:18px;margin:0 0 10px;color:var(--gold2)}
+.act{display:grid;grid-template-columns:34px 1fr;gap:12px;background:rgba(255,255,255,.04);border-radius:12px;padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--gold)}
+.act.c{border-left-color:#e0685e}
+.act .i{font-family:"Noto Serif SC",serif;font-size:22px;font-weight:900;color:var(--gold2)}
+.act b{display:block}
+.act .d{font-size:13px;color:#cfc8b9}
+.act .lvl{font-size:11px;font-weight:700;letter-spacing:.06em;margin-left:6px;padding:1px 6px;border-radius:4px}
+.empty{color:#a9a294;font-size:14px;padding:12px 0}
+.ref{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:30px 0}
+.ref h3{font-family:"Noto Serif SC",serif;margin:0 0 12px}
+.reft{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.reft div{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.reft b{display:block;font-size:18px;color:var(--navy);font-family:"Inter";font-weight:800}
+.reft span{font-size:12.5px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 0 50px;font-size:12px;color:var(--muted)}
+.sig{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:14px}
+.sig .name{font-family:"Noto Serif SC",serif;font-size:18px;color:var(--navy);font-weight:700}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1}
+@media (max-width:820px){
+  .methodology,.inputs{grid-template-columns:1fr 1fr}
+  .rgrid,.radarbox{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+  .reft{grid-template-columns:1fr 1fr}
+  .item{grid-template-columns:1fr}
+  .sec-h .w{display:none}
 }
-
-/* process */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
-.step{display:flex;flex-direction:column;gap:8px;min-width:0}
-.step .n{font:500 .8rem var(--mono);color:var(--jade);border-top:2px solid var(--jade);padding-top:10px}
-.step p{color:var(--muted);font-size:.93rem}
-@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:480px){.steps{grid-template-columns:1fr}}
-
-/* calculator */
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.calc > *{min-width:0}
-.inputs{padding:28px;display:grid;gap:18px;border-right:1px solid var(--line)}
-.field{display:grid;gap:6px}
-.field label{display:flex;justify-content:space-between;gap:10px;font-size:.88rem;font-weight:500}
-.field output{font:500 .9rem var(--mono);color:var(--jade);font-variant-numeric:tabular-nums}
-input[type=range]{width:100%;accent-color:var(--jade)}
-.results{padding:28px;background:var(--jade-soft);display:flex;flex-direction:column;gap:22px}
-.big{font:500 clamp(2rem,4vw,2.8rem)/1 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.kv{display:grid;grid-template-columns:1fr auto;gap:10px 16px;font-size:.92rem;border-top:1px solid var(--line);padding-top:16px}
-.kv dt{color:var(--muted)} .kv dd{margin:0;font:500 .95rem var(--mono);font-variant-numeric:tabular-nums;text-align:right}
-.note{font-size:.78rem;color:var(--muted)}
-@media (max-width:760px){.calc{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:1px solid var(--line)}}
-
-/* about */
-.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
-.about > *{min-width:0}
-.seal{aspect-ratio:1;max-width:260px;width:100%;border-radius:10px;background:var(--ink);color:var(--paper);display:grid;place-items:center;text-align:center}
-.seal b{display:block;font:700 4.2rem/1 var(--display-zh)}
-.seal span{display:block;font:.78rem var(--mono);letter-spacing:.16em;margin-top:14px;opacity:.75}
-.about .body{display:grid;gap:16px;color:var(--muted)}
-.about .body strong{color:var(--ink)}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.facts span{font-size:.8rem;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--ink)}
-@media (max-width:760px){.about{grid-template-columns:1fr;gap:32px}}
-
-/* contact */
-.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
-.contact > *{min-width:0}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:grid;gap:18px}
-.row{display:grid;gap:4px}
-.row small{font:.72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.copy{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.copy code{font:500 1.1rem var(--mono);user-select:all;word-break:break-all}
-.copy button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;padding:6px 12px;font:500 .82rem var(--body);cursor:pointer}
-@media (max-width:760px){.contact{grid-template-columns:1fr}}
-
-footer{padding-block:36px 48px;font-size:.78rem;color:var(--muted);display:grid;gap:10px}
-footer p{max-width:90ch}
-body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+@media print{
+  header.hero{padding:24px 0}.btns{display:none}
+  #report{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="#top"><b>Tracy Li</b><span lang="zh">退休规划 · 资产配置</span><span lang="en">Retirement · Allocation</span></a>
-    <nav>
-      <a href="#services"><span lang="zh">服务</span><span lang="en">Services</span></a>
-      <a href="#calculator"><span lang="zh">退休测算</span><span lang="en">Calculator</span></a>
-      <a href="#about"><span lang="zh">关于</span><span lang="en">About</span></a>
-      <a href="#contact"><span lang="zh">预约</span><span lang="en">Contact</span></a>
-      <div class="lang" role="group" aria-label="Language">
-        <button id="btn-zh" type="button" aria-pressed="true">中文</button>
-        <button id="btn-en" type="button" aria-pressed="false">EN</button>
-      </div>
-    </nav>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Cross-Border Family Financial Diagnostic · 2026 Edition</div>
+    <h1>新移民家庭财务体检表</h1>
+    <div class="en">A Comprehensive Check-up for Families Who Built Their First Life in China</div>
+    <p class="lead">8 大维度 · 38 项指标 · 5 项量化体征。专为从中国移居北美的家庭设计——除常规理财体检外，重点筛查<b style="color:#e9c98a">跨境税务申报、境外资产配置、非公民配偶传承</b>等本地顾问容易忽视的盲区。</p>
+    <div class="meta">
+      <div><label>家庭 / Client</label><input id="client" placeholder="如：王先生 & 李女士"></div>
+      <div><label>体检日期 / Date</label><input id="date"></div>
+      <div><label>来美年数 / Years in US</label><input id="yrs" placeholder="如：3"></div>
+    </div>
+    <div class="btns">
+      <button class="primary" onclick="loadDemo()">载入示例家庭</button>
+      <button onclick="resetAll()">清空重填</button>
+      <button onclick="document.getElementById('report').scrollIntoView({behavior:'smooth'})">查看诊断报告 ↓</button>
+    </div>
   </div>
 </header>
 
-<main class="wrap" id="top">
-  <section class="hero">
-    <div>
-      <p class="eyebrow"><span lang="zh">湾区华人家庭 · Milpitas</span><span lang="en">For Bay Area Chinese families · Milpitas</span></p>
-      <h1>
-        <span lang="zh">退休不是一个数字，<br>是一份现金流计划。</span>
-        <span lang="en">Retirement isn't a number. It's a cash-flow plan.</span>
-      </h1>
-      <p class="lede">
-        <span lang="zh">我帮您把 401(k)、IRA、房产和储蓄放进同一张资产配置表：多少放股票、多少放债券、何时领社安金、先动用哪个账户。用数据说话，用中文讲清楚。</span>
-        <span lang="en">I put your 401(k), IRA, real estate and savings on one allocation map: how much in stocks and bonds, when to claim Social Security, and which account to draw from first. Data-driven, explained in Mandarin or English.</span>
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="#contact"><span lang="zh">预约免费咨询</span><span lang="en">Book a free consultation</span></a>
-        <a class="btn ghost" href="#calculator"><span lang="zh">先算一算 →</span><span lang="en">Run the numbers →</span></a>
-      </div>
-    </div>
+<div class="wrap">
+  <div class="methodology">
+    <div><b>8</b><span>诊断维度，按新移民风险加权</span></div>
+    <div><b>18%</b><span>跨境税务合规权重——全表最高</span></div>
+    <div><b>5</b><span>项量化体征，自动计算打分</span></div>
+    <div><b>A–D</b><span>四级健康评级 + 优先行动清单</span></div>
+  </div>
 
-    <figure class="chart" style="margin:0">
-      <h3><span lang="zh">随年龄调整的资产配置（示例）</span><span lang="en">Allocation glide path by age (illustrative)</span></h3>
-      <p class="sub"><span lang="zh">越接近退休，越重视稳定现金流</span><span lang="en">Closer to retirement, stability matters more</span></p>
-      <svg id="glide" viewBox="0 0 440 250" role="img" aria-label="Stacked bars showing stock, bond and cash percentages from age 40 to 75"></svg>
-      <div class="legend">
-        <span><i style="background:var(--jade)"></i><span lang="zh">股票</span><span lang="en">Stocks</span></span>
-        <span><i style="background:var(--bond)"></i><span lang="zh">债券</span><span lang="en">Bonds</span></span>
-        <span><i style="background:var(--cash)"></i><span lang="zh">现金</span><span lang="en">Cash</span></span>
-      </div>
-    </figure>
+  <section class="block">
+    <div class="sec-h"><span class="num">00</span><h2>量化体征</h2><span class="en">VITAL SIGNS</span><span class="w">数字自动转化为评分</span></div>
+    <div class="inputs" id="inputs"></div>
   </section>
 
-  <section id="services">
-    <div class="head">
-      <p class="eyebrow"><span lang="zh">服务内容</span><span lang="en">Services</span></p>
-      <h2><span lang="zh">从积累期到领取期，一套完整的规划</span><span lang="en">One plan from accumulation through drawdown</span></h2>
-    </div>
-    <div class="services">
-      <div class="svc"><span class="tag">401(k) · IRA · Roth</span>
-        <h3><span lang="zh">退休收入规划</span><span lang="en">Retirement income planning</span></h3>
-        <p><span lang="zh">估算退休后每月需要多少，再倒推现在该存多少、该投什么。</span><span lang="en">Estimate the monthly income you need, then work back to what to save and invest today.</span></p></div>
-      <div class="svc"><span class="tag">Stocks · Bonds · Cash</span>
-        <h3><span lang="zh">资产配置与再平衡</span><span lang="en">Asset allocation &amp; rebalancing</span></h3>
-        <p><span lang="zh">根据年龄、风险承受度和时间线设定比例，并定期再平衡。</span><span lang="en">Set your mix by age, risk tolerance and timeline, and rebalance on a schedule.</span></p></div>
-      <div class="svc"><span class="tag">Social Security · 62–70</span>
-        <h3><span lang="zh">社安金领取时机</span><span lang="en">Social Security timing</span></h3>
-        <p><span lang="zh">比较 62 岁、全额退休年龄与 70 岁领取的终身差额，含配偶策略。</span><span lang="en">Compare lifetime benefits at 62, full retirement age and 70, including spousal strategy.</span></p></div>
-      <div class="svc"><span class="tag">Roth conversion · RMD</span>
-        <h3><span lang="zh">税务优化的提取顺序</span><span lang="en">Tax-aware withdrawal order</span></h3>
-        <p><span lang="zh">规划应税、递延税和免税账户的提取顺序，提前布局 RMD。</span><span lang="en">Sequence taxable, tax-deferred and tax-free accounts, and prepare ahead of RMDs.</span></p></div>
-      <div class="svc"><span class="tag">Annuity · Life insurance</span>
-        <h3><span lang="zh">长寿与风险保障</span><span lang="en">Longevity &amp; risk protection</span></h3>
-        <p><span lang="zh">评估年金与寿险是否适合您，为“活得比钱长”做准备。</span><span lang="en">Assess whether annuities or life insurance fit, so your money lasts as long as you do.</span></p></div>
-      <div class="svc"><span class="tag">Cross-border · Trust</span>
-        <h3><span lang="zh">华人家庭专题</span><span lang="en">Topics for Chinese families</span></h3>
-        <p><span lang="zh">父母来美、跨境资产、信托与传承，结合家庭实际情况讨论。</span><span lang="en">Parents in the US, cross-border assets, trusts and legacy, discussed in your family's context.</span></p></div>
-    </div>
-  </section>
+  <div id="dims"></div>
 
-  <section>
-    <div class="head">
-      <p class="eyebrow"><span lang="zh">合作流程</span><span lang="en">How we work</span></p>
-      <h2><span lang="zh">四步走，每一步都有书面结果</span><span lang="en">Four steps, each with a written result</span></h2>
-    </div>
-    <div class="steps">
-      <div class="step"><span class="n">01</span><h3><span lang="zh">了解现状</span><span lang="en">Discovery</span></h3><p><span lang="zh">梳理收入、支出、账户和目标，约 60 分钟。</span><span lang="en">Map income, spending, accounts and goals. About 60 minutes.</span></p></div>
-      <div class="step"><span class="n">02</span><h3><span lang="zh">数据分析</span><span lang="en">Analysis</span></h3><p><span lang="zh">用 AI 工具做多情景测算，再由我逐项审核。</span><span lang="en">Run multi-scenario projections with AI tools, each reviewed by me.</span></p></div>
-      <div class="step"><span class="n">03</span><h3><span lang="zh">方案讲解</span><span lang="en">Plan review</span></h3><p><span lang="zh">中英双语讲解配置建议和行动清单。</span><span lang="en">Walk through the allocation and an action checklist, in either language.</span></p></div>
-      <div class="step"><span class="n">04</span><h3><span lang="zh">年度复盘</span><span lang="en">Annual check-in</span></h3><p><span lang="zh">市场、税法或家庭变化时重新调整。</span><span lang="en">Adjust when markets, tax law or your family situation change.</span></p></div>
-    </div>
-  </section>
-
-  <section id="calculator">
-    <div class="head">
-      <p class="eyebrow"><span lang="zh">退休测算</span><span lang="en">Retirement calculator</span></p>
-      <h2><span lang="zh">按现在的节奏，退休时大概有多少？</span><span lang="en">At your current pace, what will you have?</span></h2>
-    </div>
-    <div class="calc">
-      <form class="inputs" id="calc-form" onsubmit="return false">
-        <div class="field"><label for="age"><span><span lang="zh">现在年龄</span><span lang="en">Current age</span></span><output id="age-o"></output></label><input id="age" type="range" min="25" max="64" value="42"></div>
-        <div class="field"><label for="ret"><span><span lang="zh">计划退休年龄</span><span lang="en">Retirement age</span></span><output id="ret-o"></output></label><input id="ret" type="range" min="50" max="72" value="65"></div>
-        <div class="field"><label for="bal"><span><span lang="zh">目前退休储蓄</span><span lang="en">Current savings</span></span><output id="bal-o"></output></label><input id="bal" type="range" min="0" max="2000000" step="10000" value="350000"></div>
-        <div class="field"><label for="mon"><span><span lang="zh">每月新增储蓄</span><span lang="en">Monthly contribution</span></span><output id="mon-o"></output></label><input id="mon" type="range" min="0" max="8000" step="100" value="2000"></div>
-        <div class="field"><label for="rate"><span><span lang="zh">年化回报假设</span><span lang="en">Assumed annual return</span></span><output id="rate-o"></output></label><input id="rate" type="range" min="2" max="9" step="0.5" value="6"></div>
-      </form>
-      <div class="results" aria-live="polite">
-        <div>
-          <p class="eyebrow" style="margin-bottom:8px"><span lang="zh">退休时预计资产（今日购买力）</span><span lang="en">Projected at retirement (today's dollars)</span></p>
-          <div class="big" id="out-bal">—</div>
-        </div>
-        <dl class="kv">
-          <dt><span lang="zh">按 4% 提取，每年可用</span><span lang="en">Annual income at 4% withdrawal</span></dt><dd id="out-yr">—</dd>
-          <dt><span lang="zh">折合每月</span><span lang="en">Per month</span></dt><dd id="out-mo">—</dd>
-          <dt><span lang="zh">距离退休</span><span lang="en">Years to retirement</span></dt><dd id="out-n">—</dd>
-        </dl>
-        <p class="note"><span lang="zh">仅为示例测算：已扣除 3% 通胀，未计入社安金、税费和费用，不构成投资建议。真实方案需结合您的完整情况。</span><span lang="en">Illustration only: assumes 3% inflation, excludes Social Security, taxes and fees. Not investment advice; a real plan uses your full picture.</span></p>
+  <section id="report">
+    <div class="eyebrow">Diagnostic Report</div>
+    <h2 id="rtitle">家庭财务体检诊断报告</h2>
+    <div style="font-size:13px;color:#a9a294" id="rsub"></div>
+    <div class="rgrid">
+      <div class="dial">
+        <svg viewBox="0 0 200 200" width="220" height="220">
+          <circle cx="100" cy="100" r="84" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="14"/>
+          <circle id="arc" cx="100" cy="100" r="84" fill="none" stroke="#d9b36a" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 528" transform="rotate(-90 100 100)"/>
+          <foreignObject x="20" y="55" width="160" height="100"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><div class="score" id="score">–</div><div style="font-size:12px;color:#a9a294">综合健康分 / 100</div></div></foreignObject>
+        </svg>
+        <div><span class="grade" id="grade">待评估</span></div>
+        <div class="desc" id="gdesc">完成下方各项后自动生成</div>
+      </div>
+      <div class="radarbox">
+        <svg id="radar" viewBox="0 0 300 300" width="100%"></svg>
+        <div class="bars" id="bars"></div>
       </div>
     </div>
-  </section>
-
-  <section id="about">
-    <div class="about">
-      <div class="seal" aria-hidden="true"><div><b>李泉</b><span>TRACY LI</span></div></div>
-      <div class="body">
-        <p class="eyebrow"><span lang="zh">关于我</span><span lang="en">About</span></p>
-        <h2 style="color:var(--ink)"><span lang="zh">数据做分析，判断由人来负责</span><span lang="en">Data does the analysis. A person owns the judgment.</span></h2>
-        <p><span lang="zh">我是 <strong>Tracy Li（李泉）</strong>，在湾区服务北美华人家庭的理财顾问。我用 AI 工具做多情景测算和资料整理，让每次讨论都有扎实的数字基础；但每一项建议，都由我根据您的家庭情况亲自判断。</span><span lang="en">I'm <strong>Tracy Li (李泉)</strong>, a financial professional serving Chinese families in North America. I use AI tools for scenario modeling and research so every conversation rests on solid numbers, and I make every recommendation myself based on your family's situation.</span></p>
-        <p><span lang="zh">入行前我从事反欺诈工作，这让我对风险、细节和“看起来太好”的产品格外谨慎。</span><span lang="en">Before advising, I worked in fraud prevention. That made me careful about risk, details, and anything that looks too good to be true.</span></p>
-        <div class="facts"><span>中文 / English</span><span>Milpitas office</span><span lang="zh">苏州中学校友</span><span lang="en">Suzhou High School alum</span><span lang="zh">反欺诈背景</span><span lang="en">Fraud-prevention background</span></div>
-      </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="actions">
+      <h3>优先行动清单 · Action Plan</h3>
+      <div id="acts"></div>
     </div>
+    <div class="btns"><button class="primary" onclick="copySummary()">复制报告摘要（可发微信）</button></div>
   </section>
 
-  <section id="contact" style="border-bottom:0">
-    <div class="contact">
-      <div class="head" style="margin:0">
-        <p class="eyebrow"><span lang="zh">预约咨询</span><span lang="en">Get in touch</span></p>
-        <h2><span lang="zh">第一次咨询免费，30–60 分钟</span><span lang="en">Your first consultation is free, 30–60 minutes</span></h2>
-        <p class="lede"><span lang="zh">加微信时请备注“退休规划”，并简单说明您最关心的问题。可以线上，也可以来 Milpitas 办公室面谈。</span><span lang="en">When adding me on WeChat, mention "retirement planning" and your main question. We can meet online or at my Milpitas office.</span></p>
-      </div>
-      <div class="card">
-        <div class="row"><small>WeChat</small>
-          <div class="copy"><code id="wx">TracyBayArea2023</code><button id="copy-btn" type="button"><span lang="zh">复制</span><span lang="en">Copy</span></button></div></div>
-        <div class="row"><small><span lang="zh">办公室</span><span lang="en">Office</span></small><span>Milpitas, CA</span></div>
-        <div class="row"><small><span lang="zh">语言</span><span lang="en">Languages</span></small><span>普通话 · English</span></div>
-      </div>
+  <div class="ref">
+    <h3>2026 年关键数字速查 · Key Numbers</h3>
+    <div class="reft">
+      <div><b>$24,500</b><span>401(k) 员工供款上限（50岁+ 追加 $8,000）</span></div>
+      <div><b>$7,500</b><span>IRA / Roth IRA 供款上限（50岁+ 追加 $1,100）</span></div>
+      <div><b>$4,400 / $8,750</b><span>HSA 个人 / 家庭供款上限</span></div>
+      <div><b>$10,000</b><span>FBAR：境外账户合计任一时点超过即需申报</span></div>
+      <div><b>$100,000</b><span>Form 3520：年内收到外国个人赠与/遗产超过即需申报</span></div>
+      <div><b>$50K / $100K</b><span>Form 8938 年末门槛（单身 / 夫妻合报，美国境内居住）</span></div>
+      <div><b>$19,000</b><span>年度赠与免税额（每受赠人）</span></div>
+      <div><b>$194,000</b><span>赠与非美国公民配偶年度免税额</span></div>
+      <div><b>$15M / $60K</b><span>美国公民/居民 遗产税豁免 ｜ 非居民外国人（如父母）仅 $60K</span></div>
     </div>
-  </section>
-</main>
+  </div>
 
-<footer class="wrap">
-  <p><span lang="zh">本网站内容仅供教育参考，不构成投资、税务或法律建议。投资有风险，过往表现不代表未来回报。</span><span lang="en">Content on this site is for educational purposes only and is not investment, tax or legal advice. Investing involves risk; past performance does not guarantee future results.</span></p>
-  <p>[Add your firm's required licensing and broker-dealer disclosures here before publishing publicly.]</p>
-  <p>© 2026 Tracy Li</p>
-</footer>
+  <footer>
+    <div class="sig">
+      <div><div class="name">Tracy Li 李泉</div><div>跨境家庭财务规划 · Milpitas, CA · 中英双语服务</div></div>
+      <div>WeChat：TracyBayArea2023</div>
+    </div>
+    本体检表仅供教育与自我评估用途，不构成税务、法律或投资建议。跨境税务申报（FBAR、8938、3520、8621 等）及遗产架构设计，请与持牌 CPA / 遗产律师确认具体适用情况。数字依据 IRS 2026 年公布的通胀调整额度。
+  </footer>
+</div>
+<div class="toast" id="toast"></div>
 
 <script>
-(function(){
-  var root=document.documentElement;
-  function setLang(l){root.setAttribute('lang',l);
-    document.getElementById('btn-zh').setAttribute('aria-pressed',l==='zh');
-    document.getElementById('btn-en').setAttribute('aria-pressed',l==='en');
-    try{localStorage.setItem('lang',l)}catch(e){}}
-  var saved='zh';try{saved=localStorage.getItem('lang')||'zh'}catch(e){}
-  setLang(saved);
-  document.getElementById('btn-zh').onclick=function(){setLang('zh')};
-  document.getElementById('btn-en').onclick=function(){setLang('en')};
+const DIMS=[
+ {id:'cash',n:'01',zh:'现金流与应急金',en:'CASH FLOW & LIQUIDITY',w:12,short:'现金流'},
+ {id:'credit',n:'02',zh:'信用、负债与反诈',en:'CREDIT, DEBT & FRAUD DEFENSE',w:10,short:'信用负债'},
+ {id:'prot',n:'03',zh:'风险保障',en:'RISK PROTECTION',w:15,short:'风险保障'},
+ {id:'ret',n:'04',zh:'退休规划',en:'RETIREMENT READINESS',w:15,short:'退休规划'},
+ {id:'tax',n:'05',zh:'跨境税务合规',en:'CROSS-BORDER TAX COMPLIANCE',w:18,short:'跨境税务'},
+ {id:'inv',n:'06',zh:'投资与资产配置',en:'INVESTMENT & ALLOCATION',w:10,short:'资产配置'},
+ {id:'edu',n:'07',zh:'子女教育',en:'EDUCATION FUNDING',w:8,short:'子女教育'},
+ {id:'est',n:'08',zh:'遗产与家族传承',en:'ESTATE & LEGACY',w:12,short:'遗产传承'},
+];
+const INPUTS=[
+ {id:'age',l:'户主年龄',s:'用于退休储蓄基准',u:'岁'},
+ {id:'gross',l:'家庭年税前收入',s:'Gross household income',u:'$'},
+ {id:'net',l:'月税后收入',s:'Monthly take-home',u:'$'},
+ {id:'exp',l:'月生活支出',s:'含房租/房贷',u:'$'},
+ {id:'cashv',l:'流动资金',s:'活期+货币基金+短期存款',u:'$'},
+ {id:'debt',l:'月债务还款',s:'房贷+车贷+信用卡+学贷',u:'$'},
+ {id:'life',l:'寿险总保额',s:'个人+团体，夫妻合计',u:'$'},
+ {id:'retv',l:'退休账户总额',s:'401k/IRA/403b 等',u:'$'},
+];
+// auto items: computed from inputs
+const ITEMS=[
+ // cash
+ {d:'cash',id:'em',auto:'em',q:'应急金覆盖月数',note:'标准：≥ 6 个月支出。新移民无亲友网络兜底、工作签证身份对失业更敏感，建议 6–9 个月。',act:'建立应急金：先存够 3 个月支出，再逐步补足至 6 个月，放在高息储蓄或货币基金。'},
+ {d:'cash',id:'sr',auto:'sr',q:'储蓄率',note:'标准：≥ 20% 税后收入。',act:'提高储蓄率：自动转账"先存后花"，目标税后收入 20%。'},
+ {d:'cash',id:'c1',q:'有家庭月度预算，并追踪实际支出',note:'含中美两地开支（如国内父母赡养、房贷）。',act:'建立双币种家庭预算表，每月复盘一次。'},
+ {d:'cash',id:'c2',q:'跨境汇款有完整资金来源记录',note:'个人年度 5 万美元购汇额度、银行大额入账审查、日后购房贷款都需要清晰的资金来源证明。',act:'整理历年跨境汇款凭证（购汇单、赠与书、售房合同），建立资金来源档案。'},
+ // credit
+ {d:'credit',id:'dti',auto:'dti',q:'债务收入比（DTI）',note:'标准：≤ 36% 税前月收入；> 43% 一般难以通过房贷审批。',act:'降低债务负担：优先清偿高息债务，暂缓新增车贷等大额负债。'},
+ {d:'credit',id:'k1',q:'夫妻双方均已建立美国信用记录（FICO ≥ 700）',note:'中国征信不能迁移。只挂一方名下会让另一方在离婚、丧偶等情况下"信用归零"。',act:'为配偶单独申请信用卡/担保卡，或加为附属持卡人，6–12 个月建立独立信用。'},
+ {d:'credit',id:'k2',crit:1,q:'信用卡每月全额还款，无循环利息',note:'信用卡年利率普遍 20%+，是最昂贵的负债。',act:'立即停止循环借款：用余额转移卡或个人贷款置换高息卡债。'},
+ {d:'credit',id:'k3',q:'已冻结三大征信局信用报告，防范身份盗用',note:'Equifax / Experian / TransUnion 冻结免费，可防止他人冒名开户。',act:'在三大征信局免费冻结信用（需要时可临时解冻）。'},
+ {d:'credit',id:'k4',crit:1,q:'家人（尤其父母）能识别针对华人的常见诈骗',note:'冒充中国公检法/领事馆/快递、"投资群"、杀猪盘、冒充子女紧急借钱等，是华人社区资金损失的首要来源。',act:'召开一次家庭反诈会议：约定"凡涉及转账，先打电话给家人核实"的铁律。'},
+ // protection
+ {d:'prot',id:'li',auto:'li',crit:1,q:'寿险保额倍数（保额 ÷ 年收入）',note:'标准：≥ 10 倍年收入，或覆盖房贷 + 子女教育 + 10 年生活费。',act:'做一次保额缺口测算（DIME 法：债务+收入替代+房贷+教育），补足定期寿险。'},
+ {d:'prot',id:'p1',q:'除雇主团体寿险外，有个人独立寿险',note:'团体险通常仅 1–2 倍年薪，且离职即失效——H-1B 裁员 60 天窗口期恰是最脆弱的时刻。',act:'配置个人定期或终身寿险，保障不随工作变动而中断。'},
+ {d:'prot',id:'p2',q:'有长期残疾险（LTD），覆盖 ≥ 60% 收入',note:'工作年龄段内，长期失能的概率显著高于身故。',act:'检查雇主 LTD 条款（是否 own-occupation），不足部分补充个人残疾险。'},
+ {d:'prot',id:'p3',q:'全家健康险覆盖；来美探亲父母有访客医疗险',note:'父母无美国医保，一次急诊住院可能产生数万至数十万美元账单。',act:'为每次来访的父母购买足额访客医疗险，并确认既往症条款。'},
+ {d:'prot',id:'p4',q:'房屋/车险责任额足够，并考虑伞护险（Umbrella）',note:'资产增长后，诉讼风险随之上升；伞险成本低、杠杆高。',act:'将车险责任额提升至 250/500，并配置 $1M+ 伞护险。'},
+ // retirement
+ {d:'ret',id:'rb',auto:'rb',q:'退休储蓄 vs 年龄基准',note:'参考基准：30 岁 1 倍、40 岁 3 倍、50 岁 6 倍、60 岁 8 倍年收入。新移民起步晚，需更高储蓄率追赶。',act:'制定追赶计划：提高 401(k) 供款比例，50 岁后用足追加供款额度。'},
+ {d:'ret',id:'r1',crit:1,q:'401(k) 至少供款到拿满雇主匹配',note:'雇主匹配是 100% 的即时回报，放弃等于放弃薪酬。',act:'立即将 401(k) 供款比例调整到雇主匹配上限。'},
+ {d:'ret',id:'r2',q:'了解社安金需 40 个工作积分（约 10 年），已据此规划',note:'晚到美国的家庭可能积分不足或领取额偏低；中美尚未签订社会保障协定，两国缴费年限无法合并计算。',act:'登录 ssa.gov 查询积分与预估领取额，把缺口纳入退休测算。'},
+ {d:'ret',id:'r3',q:'已厘清中国社保/养老金状态（继续缴纳/领取资格/一次性提取）',note:'中国基本养老保险一般需累计缴满 15 年才能按月领取。',act:'核查国内社保缴费年限，决定继续缴纳、委托代缴，或按规定处理个人账户。'},
+ {d:'ret',id:'r4',q:'有量化的退休目标金额与时间表',note:'"大概够"不是计划。需考虑在美国还是回国养老、医疗成本差异。',act:'做一次退休现金流模拟：目标年龄、所需年支出、通胀、各项收入来源。'},
+ // tax
+ {d:'tax',id:'t1',crit:1,q:'境外账户合计超过 $10,000 时，每年申报 FBAR',note:'国内银行卡、余额宝、微信零钱通、股票账户、有现金价值的保单都可能需要计入。不知情不申报也可能被罚。',act:'盘点全部境外账户，按年度最高余额申报 FinCEN 114；历年漏报可咨询 CPA 走补报程序。'},
+ {d:'tax',id:'t2',crit:1,q:'境外金融资产达到门槛时，申报 Form 8938',note:'与 FBAR 是两套独立申报，门槛不同、递交机构不同，不能互相替代。',act:'由 CPA 核对 8938 门槛，与个税申报表一并提交。'},
+ {d:'tax',id:'t3',crit:1,q:'收到父母等外国个人赠与/遗产超 $100,000，已申报 Form 3520',note:'赠与本身通常不用交税，但漏报罚款可高达赠与额的 25%。',act:'整理父母历年大额汇款，确认是否需补报 3520。'},
+ {d:'tax',id:'t4',q:'持有中国公募基金/银行理财，已评估 PFIC 问题（Form 8621）',note:'美国税务居民持有外国基金，通常被认定为 PFIC，税负和申报负担都很重。',act:'评估是否在成为税务居民前/尽早处置国内基金，改为直接持股或美国本土基金。'},
+ {d:'tax',id:'t5',q:'成为美国税务居民前，做过移民前税务规划',note:'例如：在登陆前出售增值资产、记录资产成本基础、调整资产持有架构——登陆后很多机会就消失了。',act:'若尚有家人未登陆，务必在登陆前完成资产盘点与税基规划。'},
+ {d:'tax',id:'t6',q:'出售/出租中国房产的收入已在美国如实申报',note:'美国对税务居民全球征税；在中国已缴的税可申请海外税收抵免（Form 1116）。',act:'汇总国内房产买卖和租金收入及完税凭证，申报并申请税收抵免避免双重征税。'},
+ // inv
+ {d:'inv',id:'i1',q:'资产不过度集中于单一国家/单一资产（如国内房产）',note:'很多新移民 60–80% 净资产在国内房产，流动性差、汇率与政策风险集中。',act:'制定 3–5 年逐步再平衡计划，降低单一国家、单一资产类别的集中度。'},
+ {d:'inv',id:'i2',q:'有明确的股债配置比例，并定期再平衡',note:'',act:'根据目标期限和风险承受能力设定目标配置，每年再平衡一次。'},
+ {d:'inv',id:'i3',q:'充分利用免税/延税账户（Roth、HSA、529）',note:'HSA 是唯一"三重免税"的账户；高收入家庭可考虑 Backdoor Roth。',act:'按优先级排序：401(k) 匹配 → HSA → Roth/Backdoor Roth → 401(k) 上限 → 应税账户。'},
+ {d:'inv',id:'i4',q:'投资风险与目标期限匹配，避免"短钱长投"',note:'3 年内要用的购房首付不应放在股票里。',act:'按"短期/中期/长期"三个桶重新划分资金。'},
+ // edu
+ {d:'edu',id:'e1',q:'已开立 529 教育储蓄计划',note:'投资增长免联邦税，用于合格教育支出免税提取；部分未用余额可转入受益人 Roth IRA（有条件限制）。',act:'为每个孩子开立 529，设置每月自动定投。'},
+ {d:'edu',id:'e2',q:'了解境外资产对助学金（FAFSA / CSS Profile）的影响',note:'名校常用的 CSS Profile 会询问境外资产与房产；资产在谁名下、以何种形式持有，会影响资助额。',act:'在孩子高二前（申请"基准年"前）完成资产结构梳理。'},
+ {d:'edu',id:'e3',q:'教育金目标已量化（公立/私立、本州/外州）',note:'',act:'测算每个孩子的教育金缺口与每月需储蓄额。'},
+ // est
+ {d:'est',id:'s1',crit:1,q:'有美国有效遗嘱',note:'无遗嘱时按州法定继承分配，未必符合家庭意愿。',act:'与遗产律师订立遗嘱（最好同时设立生前信托）。'},
+ {d:'est',id:'s2',crit:1,q:'已指定未成年子女的法定监护人',note:'若父母同时发生意外，亲人多在国内——没有指定，监护权将由法院决定。',act:'在遗嘱中指定监护人与备选人，并提前与对方沟通。'},
+ {d:'est',id:'s3',q:'已设立生前信托（Living Trust），避免加州遗嘱认证',note:'加州 Probate 耗时常以年计，费用按资产规模法定计算，且过程公开。',act:'设立可撤销生前信托，并将房产、投资账户过户到信托名下。'},
+ {d:'est',id:'s4',q:'了解非美国公民配偶的遗产/赠与规则',note:'非公民配偶不享受无限婚姻扣除；2026 年对其年度赠与免税额为 $194,000，可能需要 QDOT 信托。',act:'若一方未入籍，请律师评估 QDOT 安排与年度赠与策略。'},
+ {d:'est',id:'s5',q:'父母（非美国居民）名下未直接持有美国资产',note:'非居民外国人持有的美国资产，遗产税豁免仅 $60,000，超出部分最高 40%。',act:'调整父母名下美国股票/房产的持有方式，或改为生前赠与。'},
+ {d:'est',id:'s6',q:'所有账户受益人指定已更新；中国境内资产有继承安排',note:'401(k)/IRA/保单按受益人指定分配、优先于遗嘱；国内资产继承常需公证手续。',act:'逐一核对美国账户受益人；为国内资产办理公证遗嘱或提前过户。'},
+];
+const ANS={}; const VAL={};
+const $=s=>document.querySelector(s);
+const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
 
-  // glide path chart
-  var ages=[40,45,50,55,60,65,70,75], svg=document.getElementById('glide'), NS='http://www.w3.org/2000/svg';
-  var L=34,T=8,W=440-L-6,H=210, bw=W/ages.length;
-  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e}
-  [0,25,50,75,100].forEach(function(v){var y=T+H-(v/100)*H;
-    el('line',{x1:L,x2:L+W,y1:y,y2:y,stroke:'var(--line)','stroke-width':1});
-    var t=el('text',{x:L-6,y:y+4,'text-anchor':'end','font-size':10,fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});t.textContent=v+'%'});
-  ages.forEach(function(a,i){
-    var stock=Math.round(Math.max(40,Math.min(85,85-(a-40)*1.3))), cash=a>=60?10:5, bond=100-stock-cash;
-    var x=L+i*bw+bw*.18, w=bw*.64, y=T+H;
-    [[stock,'var(--jade)'],[bond,'var(--bond)'],[cash,'var(--cash)']].forEach(function(p){
-      var h=p[0]/100*H; y-=h; el('rect',{x:x,y:y,width:w,height:h,fill:p[1]})});
-    var s=el('text',{x:x+w/2,y:T+H-(stock/100*H)/2+4,'text-anchor':'middle','font-size':10,fill:'var(--surface)','font-family':'IBM Plex Mono,monospace'});s.textContent=stock;
-    var t=el('text',{x:x+w/2,y:T+H+18,'text-anchor':'middle','font-size':11,fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});t.textContent=a;
-  });
-  var at=el('text',{x:L+W,y:T+H+36,'text-anchor':'end','font-size':10,fill:'var(--muted)','font-family':'IBM Plex Sans,sans-serif'});at.textContent='Age 年龄';
-
-  // calculator
-  var $=function(id){return document.getElementById(id)};
-  var usd=function(v){return '$'+Math.round(v).toLocaleString('en-US')};
-  function calc(){
-    var age=+$('age').value, ret=Math.max(+$('ret').value,age+1);
-    if(+$('ret').value<=age){$('ret').value=ret}
-    var bal=+$('bal').value, mon=+$('mon').value, r=+$('rate').value/100;
-    var real=(1+r)/1.03-1, n=ret-age, m=Math.pow(1+real,1/12)-1, months=n*12;
-    var fv=bal*Math.pow(1+m,months)+(m?mon*(Math.pow(1+m,months)-1)/m:mon*months);
-    $('age-o').textContent=age; $('ret-o').textContent=ret; $('bal-o').textContent=usd(bal);
-    $('mon-o').textContent=usd(mon); $('rate-o').textContent=(+$('rate').value).toFixed(1)+'%';
-    $('out-bal').textContent=usd(fv); $('out-yr').textContent=usd(fv*.04); $('out-mo').textContent=usd(fv*.04/12);
-    $('out-n').textContent=n+(root.lang==='zh'?' 年':' yrs');
-  }
-  ['age','ret','bal','mon','rate'].forEach(function(id){$(id).addEventListener('input',calc)});
-  ['btn-zh','btn-en'].forEach(function(id){$(id).addEventListener('click',calc)});
-  calc();
-
-  // copy wechat
-  $('copy-btn').addEventListener('click',function(){
-    var b=this, txt='TracyBayArea2023';
-    function done(){var o=b.innerHTML;b.textContent=root.lang==='zh'?'已复制':'Copied';setTimeout(function(){b.innerHTML=o},1600)}
-    function fallback(){var r=document.createRange();r.selectNodeContents($('wx'));var s=getSelection();s.removeAllRanges();s.addRange(r)}
-    try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
-  });
-})();
+function build(){
+  $('#date').value=new Date().toISOString().slice(0,10);
+  $('#inputs').innerHTML=INPUTS.map(f=>`<div class="field"><label>${f.l}</label><small>${f.s}</small><div class="in">${f.u==='$'?'<span>$</span>':''}<input inputmode="decimal" id="in_${f.id}" placeholder="0">${f.u!=='$'?'<span>'+f.u+'</span>':''}</div></div>`).join('');
+  INPUTS.forEach(f=>$('#in_'+f.id).addEventListener('input',e=>{VAL[f.id]=parseFloat(e.target.value.replace(/[,$]/g,''));update()}));
+  $('#dims').innerHTML=DIMS.map(d=>`<section class="block"><div class="sec-h"><span class="num">${d.n}</span><h2>${d.zh}</h2><span class="en">${d.en}</span><span class="w">权重 ${d.w}%</span></div>`+
+   ITEMS.filter(i=>i.d===d.id).map(i=>`<div class="item ${i.crit?'crit':''}"><div><div class="q">${i.q}${i.crit?'<span class="tag">关键</span>':''}${i.auto?'<span class="tag auto">自动</span>':''}</div>${i.note?`<div class="note">${i.note}</div>`:''}</div>`+
+   (i.auto?`<span class="autoval n" id="av_${i.id}">待输入</span>`:`<div class="seg" data-id="${i.id}"><button data-v="2">达标</button><button data-v="1">部分</button><button data-v="0">未做</button><button data-v="na">不适用</button></div>`)+`</div>`).join('')+`</section>`).join('');
+  document.querySelectorAll('.seg').forEach(s=>s.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const id=s.dataset.id;
+    ANS[id]=b.dataset.v==='na'?'na':+b.dataset.v;s.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));update()}));
+  update();
+}
+function benchMult(age){const pts=[[25,.3],[30,1],[35,2],[40,3],[45,4],[50,6],[55,7],[60,8],[67,10]];
+  if(age<=25)return .3;if(age>=67)return 10;for(let k=1;k<pts.length;k++){if(age<=pts[k][0]){const[a0,m0]=pts[k-1],[a1,m1]=pts[k];return m0+(m1-m0)*(age-a0)/(a1-a0)}}}
+function autoCalc(){
+  const v=VAL, ok=x=>isFinite(x)&&x>0, out={};
+  if(ok(v.cashv)&&ok(v.exp)){const m=v.cashv/v.exp;out.em={s:m>=6?2:m>=3?1:0,t:m.toFixed(1)+' 个月'}}
+  if(ok(v.net)&&isFinite(v.exp)){const r=(v.net-v.exp)/v.net;out.sr={s:r>=.2?2:r>=.1?1:0,t:(r*100).toFixed(0)+'%'}}
+  if(ok(v.gross)&&isFinite(v.debt)&&v.debt>=0){const r=v.debt/(v.gross/12);out.dti={s:r<=.36?2:r<=.43?1:0,t:(r*100).toFixed(0)+'%'}}
+  if(ok(v.gross)&&isFinite(v.life)&&v.life>=0){const r=v.life/v.gross;out.li={s:r>=10?2:r>=5?1:0,t:r.toFixed(1)+' 倍'}}
+  if(ok(v.gross)&&ok(v.age)&&isFinite(v.retv)&&v.retv>=0){const b=benchMult(v.age),r=v.retv/v.gross/b;out.rb={s:r>=1?2:r>=.5?1:0,t:Math.round(r*100)+'% 基准',b}}
+  return out;
+}
+function update(){
+  const A=autoCalc();
+  ITEMS.filter(i=>i.auto).forEach(i=>{const el=$('#av_'+i.id),a=A[i.auto];if(a){ANS[i.id]=a.s;el.textContent=a.t;el.className='autoval '+['r','a','g'][a.s]}else{delete ANS[i.id];el.textContent='待输入';el.className='autoval n'}});
+  const ds=DIMS.map(d=>{const its=ITEMS.filter(i=>i.d===d.id&&ANS[i.id]!==undefined&&ANS[i.id]!=='na');
+    return {...d,score:its.length?Math.round(its.reduce((s,i)=>s+ANS[i.id],0)/(its.length*2)*100):null,done:its.length}});
+  const scored=ds.filter(d=>d.score!==null), wsum=scored.reduce((s,d)=>s+d.w,0);
+  const total=wsum?Math.round(scored.reduce((s,d)=>s+d.score*d.w,0)/wsum):null;
+  const answered=ITEMS.filter(i=>ANS[i.id]!==undefined).length;
+  // critical gaps cap
+  const critZero=ITEMS.filter(i=>i.crit&&ANS[i.id]===0);
+  let final=total; if(final!==null&&critZero.length>=3)final=Math.min(final,69);
+  $('#score').textContent=final===null?'–':final;
+  $('#arc').setAttribute('stroke-dasharray',`${(final||0)/100*528} 528`);
+  const G=final===null?null:final>=85?['A','财务健康','结构稳健，进入优化与传承阶段','#2f7d5b']:final>=70?['B','亚健康','基础扎实，存在若干需要修补的缺口','#c98a1b']:final>=55?['C','需要调理','多个维度存在明显短板，建议系统规划','#d07a2a']:['D','高风险','存在可能造成重大损失的风险敞口，需优先处理','#b8423a'];
+  const g=$('#grade');
+  if(G){g.textContent=G[0]+' 级 · '+G[1];g.style.background=G[3];g.style.color='#fff';$('#gdesc').textContent=G[2]+(total!==null&&critZero.length>=3&&total>69?'（关键项缺失 ≥3 项，评级上限为 C）':'');$('#arc').setAttribute('stroke',G[3]==='#b8423a'?'#e0685e':'#d9b36a')}
+  else{g.textContent='待评估';g.style.background='rgba(255,255,255,.1)';g.style.color='#ccc';$('#gdesc').textContent='完成下方各项后自动生成'}
+  const cn=$('#client').value.trim();
+  $('#rtitle').textContent=(cn?cn+' · ':'')+'家庭财务体检诊断报告';
+  $('#rsub').textContent=`体检日期 ${$('#date').value}${$('#yrs').value?' ｜ 来美 '+$('#yrs').value+' 年':''} ｜ 已完成 ${answered}/${ITEMS.length} 项`;
+  radar(ds);
+  const col=s=>s===null?'#555':s>=85?'#4fae84':s>=70?'#e0b04a':s>=55?'#e08a3a':'#e0685e';
+  $('#bars').innerHTML=ds.map(d=>`<div class="row"><span>${d.zh}</span><div class="track"><div class="fill" style="width:${d.score||0}%;background:${col(d.score)}"></div></div><span class="v" style="color:${col(d.score)}">${d.score===null?'–':d.score}</span></div>`).join('');
+  const k=(l,a,t)=>`<div class="kpi"><div class="l">${l}</div><div class="n" style="color:${a?['#e0685e','#e0b04a','#4fae84'][a.s]:'#777'}">${a?a.t.replace(/ 基准| 个月| 倍/,''):'–'}</div><div class="t">${t}</div></div>`;
+  $('#kpis').innerHTML=k('应急金（月）',A.em,'目标 ≥ 6')+k('储蓄率',A.sr,'目标 ≥ 20%')+k('债务收入比',A.dti,'目标 ≤ 36%')+k('寿险倍数',A.li,'目标 ≥ 10×')+k('退休储蓄达成率',A.rb,A.rb?'基准 '+A.rb.b.toFixed(1)+'× 年收入':'对比年龄基准');
+  // actions
+  const gaps=ITEMS.filter(i=>ANS[i.id]===0||ANS[i.id]===1).map(i=>{const d=DIMS.find(x=>x.id===i.d);
+    return {...i,dz:d.zh,pr:(i.crit&&ANS[i.id]===0?1000:0)+(ANS[i.id]===0?100:0)+d.w}}).sort((a,b)=>b.pr-a.pr).slice(0,8);
+  window._gaps=gaps; window._ds=ds; window._final=final; window._G=G;
+  $('#acts').innerHTML=gaps.length?gaps.map((x,n)=>{const c=x.crit&&ANS[x.id]===0;const lv=c?['紧急','#e0685e']:ANS[x.id]===0?['重要','#e0b04a']:['优化','#8fb3d9'];
+    return `<div class="act ${c?'c':''}"><div class="i">${n+1}</div><div><b>${x.q}<span class="lvl" style="color:${lv[1]};border:1px solid ${lv[1]}">${lv[0]}</span></b><div class="d">【${x.dz}】→ ${x.act}</div></div></div>`}).join(''):'<div class="empty">勾选"部分"或"未做"的项目将按紧急程度自动排序，生成行动清单。</div>';
+}
+function radar(ds){
+  const cx=150,cy=150,R=105,n=ds.length;const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[cx+r*Math.cos(a),cy+r*Math.sin(a)]};
+  let s='';[.25,.5,.75,1].forEach(f=>{s+=`<polygon points="${ds.map((_,i)=>pt(i,R*f).join(',')).join(' ')}" fill="none" stroke="rgba(255,255,255,${f===1?.25:.1})"/>`});
+  ds.forEach((d,i)=>{const[x,y]=pt(i,R);s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(255,255,255,.1)"/>`;const[lx,ly]=pt(i,R+24);
+    s+=`<text x="${lx}" y="${ly}" fill="#d8d1c3" font-size="11.5" text-anchor="middle" dominant-baseline="middle" font-family="Noto Sans SC">${d.short}</text>`});
+  s+=`<polygon points="${ds.map((d,i)=>pt(i,R*(d.score||0)/100).join(',')).join(' ')}" fill="rgba(217,179,106,.28)" stroke="#d9b36a" stroke-width="2"/>`;
+  ds.forEach((d,i)=>{const[x,y]=pt(i,R*(d.score||0)/100);s+=`<circle cx="${x}" cy="${y}" r="3.5" fill="#d9b36a"/>`});
+  $('#radar').innerHTML=s;
+}
+function setSeg(id,v){ANS[id]=v;const s=document.querySelector(`.seg[data-id="${id}"]`);if(s)s.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v==String(v)))}
+function loadDemo(){
+  resetAll(true);
+  $('#client').value='示例：张先生 & 刘女士';$('#yrs').value='4';
+  const v={age:41,gross:210000,net:12500,exp:9800,cashv:41000,debt:6200,life:1200000,retv:145000};
+  Object.entries(v).forEach(([k,x])=>{$('#in_'+k).value=x;VAL[k]=x});
+  const a={c1:2,c2:1,k1:1,k2:2,k3:1,k4:2,p1:1,p2:2,p3:1,p4:1,r1:2,r2:1,r3:1,r4:0,t1:0,t2:1,t3:0,t4:1,t5:'na',t6:2,i1:1,i2:1,i3:1,i4:2,e1:2,e2:0,e3:1,s1:0,s2:2,s3:0,s4:1,s5:2,s6:1};
+  Object.entries(a).forEach(([k,x])=>setSeg(k,x));update();toast('已载入示例家庭');
+}
+function resetAll(silent){Object.keys(ANS).forEach(k=>delete ANS[k]);Object.keys(VAL).forEach(k=>delete VAL[k]);
+  document.querySelectorAll('.seg button').forEach(b=>b.classList.remove('on'));document.querySelectorAll('#inputs input').forEach(i=>i.value='');
+  if(silent!==true){$('#client').value='';$('#yrs').value='';toast('已清空')}update()}
+function copySummary(){
+  const G=window._G;if(!G){toast('请先完成体检项目');return}
+  const t=`【${$('#rtitle').textContent}】\n综合健康分：${window._final}/100（${G[0]}级·${G[1]}）\n\n各维度得分：\n`+window._ds.map(d=>`· ${d.zh}：${d.score===null?'未评':d.score}`).join('\n')+
+   `\n\n优先行动：\n`+window._gaps.slice(0,5).map((x,i)=>`${i+1}. ${x.act}`).join('\n')+`\n\n—— Tracy Li 李泉 · 跨境家庭财务规划 · WeChat: TracyBayArea2023\n（仅供教育参考，不构成税务/法律建议）`;
+  try{navigator.clipboard.writeText(t).then(()=>toast('已复制，可直接粘贴到微信'),()=>toast('复制失败，请手动选择文字'))}catch(e){toast('复制失败')}
+}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+['client','yrs','date'].forEach(id=>document.addEventListener('input',e=>{if(e.target.id===id)update()}));
+build();
 </script>
 </body>
 </html>
